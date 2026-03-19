@@ -1,0 +1,24 @@
+/* ============================================================
+   CERTIFICATIONS BACKGROUND EFFECTS
+   ============================================================ */
+
+.certifications::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%236366f1' stroke-opacity='0.30' stroke-width='2'%3E%3Crect x='10' y='10' width='60' height='60'/%3E%3Crect x='25' y='25' width='30' height='30'/%3E%3C/g%3E%3C/svg%3E");
+
+  background-size:100px 100px;
+  animation:certGridMove 10s linear infinite;
+}
+
+@keyframes certGridMove{
+  from{
+    background-position:0 0;
+  }
+  to{
+    background-position:160px 160px;
+  }
+}

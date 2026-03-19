@@ -1,0 +1,49 @@
+/* ============================================================
+   SKILLS BACKGROUND EFFECTS
+   ============================================================ */
+
+/* Dot grid pattern */
+.skills{
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle tech grid */
+
+.skills::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+
+  background-image:
+    linear-gradient(rgba(99, 101, 241, 0.377) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 101, 241, 0.397) 1px, transparent 1px);
+
+  background-size:60px 60px;
+
+  animation: skillsGridMove 25s linear infinite;
+}
+
+/* light theme */
+
+[data-theme="light"] .skills::before{
+  background-image:
+    linear-gradient(rgba(99, 101, 241, 0.377) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,101,241,0.397) 1px, transparent 1px);
+}
+
+/* slow movement */
+
+@keyframes skillsGridMove{
+
+  0%{
+    background-position:0 0;
+  }
+
+  100%{
+    background-position:200px 0;
+  }
+
+}

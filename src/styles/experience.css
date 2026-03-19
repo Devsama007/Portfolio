@@ -1,0 +1,27 @@
+/* ============================================================
+   EXPERIENCE BACKGROUND EFFECTS
+   ============================================================ */
+
+
+/* .experience::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104' viewBox='0 0 120 104'%3E%3Cg fill='none' stroke='%236366f1' stroke-width='1.5' stroke-opacity='0.35'%3E%3Cpolygon points='30,0 90,0 120,52 90,104 30,104 0,52'/%3E%3C/g%3E%3C/svg%3E");
+
+  background-size:120px 104px;
+
+  animation:honeyMove 35s linear infinite;
+} */
+
+/* @keyframes honeyMove{
+  from{
+    background-position:0 0;
+  }
+  to{
+    background-position:240px 104px;
+  }
+} */

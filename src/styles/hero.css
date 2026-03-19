@@ -1,0 +1,197 @@
+/* ============================================================
+   HERO BACKGROUND EFFECTS & ATMOSPHERE
+   ============================================================ */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+
+  /* Midnight void + center glow */
+  background:
+    radial-gradient(circle at 50% 40%, rgba(14,165,233,.18), transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(124, 11, 230, 0.15), transparent 50%),
+    #020617;
+}
+
+/* ------------------------------------------------ */
+/* CYBER GRID LAYER */
+/* ------------------------------------------------ */
+
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+
+  background-image:
+
+    /* bright grid lines */
+    linear-gradient(rgba(99, 101, 241, 0.705) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 101, 241, 0.651) 1px, transparent 1px),
+
+    /* glowing grid nodes */
+    radial-gradient(circle, rgba(168,85,247,.6) 1.2px, transparent 2.5px),
+
+    /* scanning beam */
+    linear-gradient(
+      90deg,
+      transparent,
+      rgb(2, 255, 23),
+      transparent
+    );
+
+  background-size:
+    60px 60px,
+    60px 60px,
+    60px 60px,
+    200% 100%;
+
+  background-position:
+    0 0,
+    0 0,
+    30px 30px,
+    -120% 0;
+
+  /* center focus mask */
+  mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 50%,
+    black 40%,
+    transparent 100%
+  );
+
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 60% at 50% 50%,
+    black 40%,
+    transparent 100%
+  );
+
+  /* soft glow */
+  filter: drop-shadow(0 0 6px rgba(99,102,241,.35));
+
+  animation:
+    gridFlow 14s linear infinite,
+    gridPulse 6s ease-in-out infinite,
+    scanBeam 9s linear infinite;
+}
+
+/* ------------------------------------------------ */
+/* FLOATING NEON BLOBS */
+/* ------------------------------------------------ */
+
+.hero::after{
+  content:'';
+  position:absolute;
+  inset:-20%;
+  z-index:0;
+  pointer-events:none;
+
+  background:
+
+    radial-gradient(
+      circle at 25% 35%,
+      rgba(14,165,233,.35),
+      transparent 55%
+    ),
+
+    radial-gradient(
+      circle at 75% 65%,
+      rgba(168,85,247,.35),
+      transparent 55%
+    ),
+
+    radial-gradient(
+      circle at 60% 25%,
+      rgba(14,165,233,.25),
+      transparent 60%
+    );
+
+  filter: blur(120px);
+
+  animation: blobFloat 36s ease-in-out infinite alternate;
+}
+
+/* ------------------------------------------------ */
+/* ANIMATIONS */
+/* ------------------------------------------------ */
+
+/* grid drifting */
+
+@keyframes gridFlow{
+
+  0%{
+    background-position:
+      0 0,
+      0 0,
+      30px 30px,
+      -120% 0;
+  }
+
+  100%{
+    background-position:
+      120px 120px,
+      120px 120px,
+      150px 150px,
+      120% 0;
+  }
+
+}
+
+/* brightness pulse */
+
+@keyframes gridPulse{
+
+  0%,100%{opacity:.75;}
+
+  50%{opacity:1;}
+
+}
+
+/* scanning beam */
+
+@keyframes scanBeam{
+
+  0%{
+    background-position:
+      0 0,
+      0 0,
+      30px 30px,
+      -120% 0;
+  }
+
+  100%{
+    background-position:
+      120px 120px,
+      120px 120px,
+      150px 150px,
+      120% 0;
+  }
+
+}
+
+/* floating blobs */
+
+@keyframes blobFloat{
+
+  0%{
+    transform:translate3d(0,0,0) scale(1);
+  }
+
+  50%{
+    transform:translate3d(-6%,4%,0) scale(1.1);
+  }
+
+  100%{
+    transform:translate3d(6%,-5%,0) scale(1.05);
+  }
+
+}
+
+/* ------------------------------------------------ */
+/* HERO CONTENT ABOVE EFFECTS */
+/* ------------------------------------------------ */
+
+.hero-content{
+  position:relative;
+  z-index:5;
+}

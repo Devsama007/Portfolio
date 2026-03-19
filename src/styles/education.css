@@ -1,0 +1,39 @@
+/* ============================================================
+   EDUCATION BACKGROUND EFFECTS
+   ============================================================ */
+
+/* subtle animated diagonal lines */
+
+/* .education::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+
+  background-image:
+    repeating-linear-gradient(
+      315deg,
+      transparent,
+      transparent 40px,
+      rgba(99, 101, 241, 0.103) 70px,
+      rgba(99,102,241,0.05) 72px
+    );
+
+  animation: aboutLines 20s linear infinite;
+} */
+
+/* light theme */
+
+/* [data-theme="light"] .education::before{
+
+  background-image:
+    repeating-linear-gradient(
+      315deg,
+      transparent,
+      transparent 40px,
+      rgba(99, 101, 241, 0.267) 70px,
+      rgba(99,102,241,0.08) 72px
+    );
+
+} */
