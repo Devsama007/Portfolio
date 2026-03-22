@@ -17,7 +17,7 @@ import Experience from "./components/Experience/Experience";
 import Projects from "./components/Projects/Projects";
 import Education from "./components/Education/Education";
 import Certifications from "./components/Certifications/Certifications";
-import CodingJourney from "./components/Condingjourney/Codingjourney";
+import CodingJourney from "./components/Codingjourney/Codingjourney";
 import Languages from "./components/Languages/Languages";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
