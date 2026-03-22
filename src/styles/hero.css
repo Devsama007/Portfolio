@@ -1,197 +1,201 @@
 /* ============================================================
-   HERO BACKGROUND EFFECTS & ATMOSPHERE
+   HERO - ROTATING GALAXY THEME
    ============================================================ */
+.hero {
+  --move-x: 0px;
+  --move-y: 0px;
+}
 
-.hero{
-  position:relative;
-  overflow:hidden;
 
-  /* Midnight void + center glow */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+
+  /* Deep space background */
   background:
-    radial-gradient(circle at 50% 40%, rgba(14,165,233,.18), transparent 60%),
-    radial-gradient(circle at 50% 50%, rgba(124, 11, 230, 0.15), transparent 50%),
-    #020617;
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02), transparent 60%),
+    radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a14 100%);
 }
 
 /* ------------------------------------------------ */
-/* CYBER GRID LAYER */
+/* GALAXY SPIRAL ARMS */
 /* ------------------------------------------------ */
 
-.hero::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+    /* Purple nebula arm */
+    radial-gradient(ellipse 60% 20% at 30% 50%,
+      rgba(146, 51, 234, 0.74) 0%,
+      rgba(146, 51, 234, 0.699) 30%,
+      transparent 60%),
+
+    /* Blue nebula arm */
+    radial-gradient(ellipse 60% 20% at 70% 50%,
+      rgba(59, 131, 246, 0.692) 0%,
+      rgba(59, 131, 246, 0.699) 30%,
+      transparent 60%),
+
+    /* Pink/magenta arm */
+    radial-gradient(ellipse 50% 25% at 50% 30%,
+      rgba(236, 72, 154, 0.699) 0%,
+      rgba(236, 72, 154, 0.692) 30%,
+      transparent 60%),
+
+    /* Cyan arm */
+    radial-gradient(ellipse 50% 25% at 50% 70%,
+      rgba(34, 211, 238, 0.699) 0%,
+      rgba(34, 211, 238, 0.685) 30%,
+      transparent 60%);
+
+  filter: blur(25px);
+  animation: galaxyRotate 60s linear infinite;
+}
+
+/* ------------------------------------------------ */
+/* STAR FIELD LAYERS */
+/* ------------------------------------------------ */
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  transform: translate(var(--move-x), var(--move-y));
+  transition: transform 0.1s linear;
 
   background-image:
+    /* Large bright stars */
+    radial-gradient(circle, rgba(255, 255, 255, 1) 2.5px, transparent 2.5px),
 
-    /* bright grid lines */
-    linear-gradient(rgba(99, 101, 241, 0.705) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 101, 241, 0.651) 1px, transparent 1px),
+    /* Medium stars */
+    radial-gradient(circle, rgba(147, 197, 253, 0.9) 1.8px, transparent 1.8px),
 
-    /* glowing grid nodes */
-    radial-gradient(circle, rgba(168,85,247,.6) 1.2px, transparent 2.5px),
+    /* Small distant stars */
+    radial-gradient(circle, rgba(203, 213, 225, 0.7) 1px, transparent 1px),
 
-    /* scanning beam */
-    linear-gradient(
-      90deg,
-      transparent,
-      rgb(2, 255, 23),
-      transparent
-    );
+    /* Twinkling stars */
+    radial-gradient(circle, rgba(251, 191, 36, 0.8) 1.2px, transparent 1.2px);
 
   background-size:
-    60px 60px,
-    60px 60px,
-    60px 60px,
-    200% 100%;
-
+    250px 250px,
+    180px 180px,
+    100px 100px,
+    220px 220px;
+    
   background-position:
     0 0,
-    0 0,
-    30px 30px,
-    -120% 0;
-
-  /* center focus mask */
-  mask-image: radial-gradient(
-    ellipse 80% 60% at 50% 50%,
-    black 40%,
-    transparent 100%
-  );
-
-  -webkit-mask-image: radial-gradient(
-    ellipse 80% 60% at 50% 50%,
-    black 40%,
-    transparent 100%
-  );
-
-  /* soft glow */
-  filter: drop-shadow(0 0 6px rgba(99,102,241,.35));
+    50px 50px,
+    100px 100px,
+    25px 25px;
 
   animation:
-    gridFlow 14s linear infinite,
-    gridPulse 6s ease-in-out infinite,
-    scanBeam 9s linear infinite;
+    starsFloat1 120s linear infinite,
+    starsTwinkle 4s ease-in-out infinite;
 }
 
 /* ------------------------------------------------ */
-/* FLOATING NEON BLOBS */
+/* CENTRAL GLOW (Galaxy Core) */
 /* ------------------------------------------------ */
 
-.hero::after{
-  content:'';
-  position:absolute;
-  inset:-20%;
-  z-index:0;
-  pointer-events:none;
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+.hero-content::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(600px, 80vw);
+  height: min(600px, 80vw);
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  pointer-events: none;
+
+  transform:
+    translate(-50%, -50%) translate(calc(var(--move-x) * 0.3), calc(var(--move-y) * 0.3));
 
   background:
+    radial-gradient(circle,
+      rgba(139, 92, 246, 0.3) 0%,
+      rgba(59, 130, 246, 0.2) 25%,
+      rgba(236, 72, 153, 0.15) 50%,
+      transparent 70%);
 
-    radial-gradient(
-      circle at 25% 35%,
-      rgba(14,165,233,.35),
-      transparent 55%
-    ),
-
-    radial-gradient(
-      circle at 75% 65%,
-      rgba(168,85,247,.35),
-      transparent 55%
-    ),
-
-    radial-gradient(
-      circle at 60% 25%,
-      rgba(14,165,233,.25),
-      transparent 60%
-    );
-
-  filter: blur(120px);
-
-  animation: blobFloat 36s ease-in-out infinite alternate;
+  filter: blur(60px);
+  animation: coreGlow 8s ease-in-out infinite alternate;
 }
 
 /* ------------------------------------------------ */
 /* ANIMATIONS */
 /* ------------------------------------------------ */
 
-/* grid drifting */
-
-@keyframes gridFlow{
-
-  0%{
-    background-position:
-      0 0,
-      0 0,
-      30px 30px,
-      -120% 0;
+/* Galaxy spiral rotation */
+@keyframes galaxyRotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
   }
 
-  100%{
-    background-position:
-      120px 120px,
-      120px 120px,
-      150px 150px,
-      120% 0;
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
-
 }
 
-/* brightness pulse */
-
-@keyframes gridPulse{
-
-  0%,100%{opacity:.75;}
-
-  50%{opacity:1;}
-
-}
-
-/* scanning beam */
-
-@keyframes scanBeam{
-
-  0%{
+/* Stars floating */
+@keyframes starsFloat1 {
+  0% {
     background-position:
       0 0,
-      0 0,
-      30px 30px,
-      -120% 0;
+      50px 50px,
+      100px 100px,
+      25px 25px;
   }
 
-  100%{
+  100% {
     background-position:
-      120px 120px,
-      120px 120px,
-      150px 150px,
-      120% 0;
+      400px 400px,
+      450px 450px,
+      500px 500px,
+      425px 425px;
   }
-
 }
 
-/* floating blobs */
+/* Star twinkling */
+@keyframes starsTwinkle {
 
-@keyframes blobFloat{
-
-  0%{
-    transform:translate3d(0,0,0) scale(1);
+  0%,
+  100% {
+    opacity: 0.7;
   }
 
-  50%{
-    transform:translate3d(-6%,4%,0) scale(1.1);
+  50% {
+    opacity: 1;
   }
-
-  100%{
-    transform:translate3d(6%,-5%,0) scale(1.05);
-  }
-
 }
 
-/* ------------------------------------------------ */
-/* HERO CONTENT ABOVE EFFECTS */
-/* ------------------------------------------------ */
+/* Core pulsing glow */
+@keyframes coreGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
 
-.hero-content{
-  position:relative;
-  z-index:5;
+  100% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.9;
+  }
 }

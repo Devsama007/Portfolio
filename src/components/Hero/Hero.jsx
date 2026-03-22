@@ -56,6 +56,35 @@ export default function Hero() {
         return () => clearInterval(timer);
     }, []);
 
+    useEffect(() => {
+        // Disable on mobile
+        if (window.innerWidth < 768) return;
+
+        const hero = document.querySelector('.hero');
+        let raf;
+
+        const handleMouseMove = (e) => {
+            cancelAnimationFrame(raf);
+
+            raf = requestAnimationFrame(() => {
+                const { innerWidth, innerHeight } = window;
+
+                const x = (e.clientX / innerWidth - 0.5) * 20;
+                const y = (e.clientY / innerHeight - 0.5) * 20;
+
+                hero.style.setProperty('--move-x', `${x}px`);
+                hero.style.setProperty('--move-y', `${y}px`);
+            });
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            cancelAnimationFrame(raf);
+        };
+    }, []);
+
     //Skill wrapper
     // const SKILLS = [
     //     "React",

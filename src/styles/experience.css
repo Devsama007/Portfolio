@@ -25,3 +25,59 @@
     background-position:240px 104px;
   }
 } */
+
+/* Subtle diagonal lines pattern */
+/* .about{
+  position: relative;
+  overflow: hidden;
+} */
+
+/* subtle animated diagonal lines */
+
+.experience::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(99, 101, 241, 0.103) 90px,
+      rgba(99,102,241,0.05) 82px
+    );
+
+  /* animation: aboutLines 20s linear infinite; */
+}
+
+/* light theme */
+
+[data-theme="light"] .experience::before{
+
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(99, 101, 241, 0.267) 90px,
+      rgba(99,102,241,0.08) 82px
+    );
+
+}
+
+/* smooth movement */
+
+@keyframes aboutLines{
+
+  0%{
+    background-position:0 0;
+  }
+
+  100%{
+    background-position:200px 200px;
+  }
+
+}

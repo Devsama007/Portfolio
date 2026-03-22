@@ -51,14 +51,16 @@
 } */
 
 .footer__logo-video {
-  height: 160px;
-  width: 240px;
+  height: 200px;
+  /* width: 240px; */
   width: auto;
   display: block;
   object-fit: cover;
   object-position: center center;
   clip-path: inset(20% 20% 20% 20%);
   transition: all 0.3s ease;
+  margin-left: -80px;
+  margin-top: -20px;
 }
 
 /* .navbar--scrolled .navbar__logo-video {
@@ -257,10 +259,30 @@
 
   .footer__brand {
     grid-column: auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__logo-video {
+    margin: 0 auto;
+    height: 160px;
   }
 
   .footer__tagline {
     max-width: 100%;
+  }
+
+  .footer__links,
+  .footer__connect {
+    text-align: center;
+  }
+
+  .footer__nav {
+    align-items: center;
+  }
+
+  .footer__social {
+    align-items: center;
   }
 }
 

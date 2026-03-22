@@ -43,48 +43,123 @@
 }
 
 /* ============================================================
-   LOGO
+   LOGO - CYBERPUNK GLITCH EFFECT (Clean)
    ============================================================ */
 .navbar__logo {
+  position: relative;
   text-decoration: none;
-  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #e2e8f0;
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: transparent;
   white-space: nowrap;
-  transition: color 0.2s ease;
-}
-
-.navbar__logo:hover {
-  color: #fff;
-}
-
-.navbar__logo-bracket {
-  color: #0408ff;
-  transition: color 0.2s ease, text-shadow 0.3s ease;
-}
-
-.navbar__logo:hover .navbar__logo-bracket {
-  color: #03cbfd;
-  text-shadow: 0 0 12px rgba(99, 102, 241, 0.7);
-}
-
-.navbar__logo-name {
-  color: #c7d2fe;
-}
-
-.navbar__logo-video {
-  height: 45px;
-  width: auto;
-  display: block;
-  object-fit: contain;
+  display: inline-block;
   transition: all 0.3s ease;
 }
 
-.navbar--scrolled .navbar__logo-video {
-  height: 36px;
+/* Glitch layers */
+.navbar__logo::before,
+.navbar__logo::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
 }
+
+.navbar__logo::before {
+  color: #00ffff;
+  animation: glitch-anim1 2.5s infinite linear alternate-reverse;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  z-index: -1;
+}
+
+.navbar__logo::after {
+  color: #ff00de;
+  animation: glitch-anim2 2s infinite linear alternate-reverse;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  z-index: -2;
+}
+
+@keyframes glitch-anim1 {
+  0% { transform: translate(0); }
+  10% { transform: translate(-2px, -2px); }
+  20% { transform: translate(-2px, 2px); }
+  30% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  50% { transform: translate(-1px, 1px); }
+  60% { transform: translate(1px, -1px); }
+  70% { transform: translate(0); }
+  80% { transform: translate(-1px, -1px); }
+  90% { transform: translate(1px, 1px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-anim2 {
+  0% { transform: translate(0); }
+  15% { transform: translate(2px, 2px); }
+  25% { transform: translate(-2px, -2px); }
+  35% { transform: translate(2px, -2px); }
+  50% { transform: translate(-2px, 2px); }
+  65% { transform: translate(1px, -1px); }
+  80% { transform: translate(-1px, 1px); }
+  100% { transform: translate(0); }
+}
+
+/* Hover - intensify glitch */
+.navbar__logo:hover::before {
+  animation: glitch-anim1 0.3s infinite linear alternate-reverse;
+}
+
+.navbar__logo:hover::after {
+  animation: glitch-anim2 0.3s infinite linear alternate-reverse;
+}
+
+/* Brackets - Cyan glow */
+.navbar__logo-bracket {
+  opacity: 0;
+}
+
+/* Name - Simple white */
+.navbar__logo-name {
+  opacity: 0;
+}
+
+/* Scrolled state */
+.navbar--scrolled .navbar__logo {
+  font-size: 1.25rem;
+}
+
+/* .navbar--scrolled .navbar__logo-bracket {
+  font-size: 1.4rem;
+} */
+
+/* ============================================================
+   LIGHT THEME
+   ============================================================ */
+[data-theme="light"] .navbar__logo {
+  color: transparent;
+}
+
+[data-theme="light"] .navbar__logo::before {
+  color: #221eff;
+}
+
+[data-theme="light"] .navbar__logo::after {
+  color: #ff1e1e;
+}
+
+[data-theme="light"] .navbar__logo-bracket {
+  opacity: 0;
+}
+
+/* [data-theme="light"] .navbar__logo-name {
+  color: #1e1b4b;
+} */
 
 /* ============================================================
    NAV LINKS — Desktop
@@ -311,6 +386,7 @@
   align-items: flex-start;
   padding: 3rem 2.5rem;
   gap: 0;
+  z-index: 2001;
 
   /* Hidden state */
   transform: translateX(100%);
@@ -326,15 +402,25 @@
   transform: translateX(0);
   opacity: 1;
   visibility: visible;
+  z-index: 1001;
 }
 
 /* Backdrop dimmer when menu open */
-.navbar--menu-open::after {
+/* .navbar--menu-open::after {
   content: '';
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
-  z-index: -1;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease forwards;
+} */
+
+/* Mobile menu backdrop */
+.navbar__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 999;
   animation: fadeIn 0.3s ease forwards;
 }
 

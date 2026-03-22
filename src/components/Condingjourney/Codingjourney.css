@@ -28,8 +28,8 @@
 }
 
 .coding-journey__container--visible {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ============================================================
@@ -54,29 +54,29 @@
 }
 
 .coding-journey__title-underline {
-  width: 380px;
-  height: 4px;
-  background: linear-gradient(90deg,  
-    #6366f1,
-    #22c55e,
-    #06b6d4,
-    #f59e0b,
-    #ec4899,
-    #6366f1
-  );
-  background-size: 300% 100%;
-  margin: 0 auto 1.5rem;
-  border-radius: 2px;
-  animation: gradientRun 3s linear infinite;
+    width: 380px;
+    height: 4px;
+    background: linear-gradient(90deg,
+            #6366f1,
+            #22c55e,
+            #06b6d4,
+            #f59e0b,
+            #ec4899,
+            #6366f1);
+    background-size: 300% 100%;
+    margin: 0 auto 1.5rem;
+    border-radius: 2px;
+    animation: gradientRun 3s linear infinite;
 }
 
 @keyframes gradientRun {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 300% 50%;
-  }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
 }
 
 .coding-journey__subtitle {
@@ -192,7 +192,7 @@
    ============================================================ */
 .coding-profiles {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
     gap: 2rem;
 }
 
@@ -285,7 +285,8 @@
     background: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     padding: 1rem;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 [data-theme="light"] .profile-card__content {
@@ -389,6 +390,8 @@
 @media (max-width: 1024px) {
     .coding-profiles {
         grid-template-columns: 1fr;
+        max-width: 600px;
+        margin: 0 auto;
     }
 }
 
@@ -397,29 +400,61 @@
         padding: 5rem 1.5rem;
     }
 
+    .coding-journey__title-underline {
+        width: 220px;
+    }
+
     .coding-journey__header {
         margin-bottom: 2.5rem;
     }
 
-    .github-heatmap,
+    .github-heatmap {
+        padding: 1.5rem;
+        max-width: 100%;
+        margin: 0 auto 2rem;
+    }
+
     .profile-card {
         padding: 1.5rem;
+        max-width: 100%;
     }
 
     .github-heatmap__header {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .coding-profiles {
+        max-width: 100%;
+        gap: 1.5rem;
+    }
 }
 
 @media (max-width: 480px) {
 
-    .github-heatmap__content,
-    .profile-card__content {
+    .coding-journey {
+        padding: 4rem 1rem;
+    }
+
+    .github-heatmap {
         padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .github-heatmap__content {
+        padding: 0.75rem;
+    }
+
+    .profile-card {
+        padding: 1rem;
+    }
+
+    .profile-card__content {
+        padding: 0.75rem;
     }
 
     .coding-profiles {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
 }

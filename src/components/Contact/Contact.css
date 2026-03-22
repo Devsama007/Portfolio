@@ -113,17 +113,18 @@
 }
 
 .contact__grid--visible {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 @keyframes fadeInScale {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* ============================================================
@@ -420,7 +421,8 @@
 .submit-btn {
     width: 100%;
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, #191dee, #ac29f8);
+    background: linear-gradient(135deg, #ff006e, #6903f8, #ff006e);
+    background-size: 200% 200%;
     border: none;
     border-radius: 10px;
     font-family: 'DM Sans', sans-serif;
@@ -432,13 +434,42 @@
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.5);
+    animation: gradient-shift 1s ease infinite;
+    box-shadow: 0 8px 24px rgba(255, 0, 110, 0.6);
+}
+
+[data-theme="light"] .submit-btn {
+  background: linear-gradient(135deg, #ee1919, #191dee, #ee1919);
+  background-size: 200% 200%;
+  color: #fff;
+  transition: 
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  animation: gradient-shift 3s ease infinite; 
+}
+
+[data-theme="light"] .submit-btn:hover {
+  transform: translateY(-2px);
+  animation: gradient-shift 1s ease infinite; 
+  box-shadow: 0 8px 24px rgba(255, 0, 110, 0.6);
 }
 
 .submit-btn:active {

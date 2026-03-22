@@ -72,6 +72,7 @@ const TABS = [
 
 export default function Skills() {
   const [activeTab, setActiveTab] = useState("all");
+  const [key, setKey] = useState(0);
 
   const skills = SKILLS_DATA[activeTab] || [];
 
@@ -85,7 +86,7 @@ export default function Skills() {
           setInView(true);
         }
       },
-      { threshold: 0.4 }
+      { threshold: 0.1 }
     );
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
@@ -93,6 +94,18 @@ export default function Skills() {
 
     return () => observer.disconnect();
   }, []);
+
+    // Reset animation when tab changes
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+    setInView(false); // Reset visibility
+    setKey(prev => prev + 1); // Force re-render
+    
+    // Re-trigger after a tiny delay
+    setTimeout(() => {
+      setInView(true);
+    }, 50);
+  };
 
   return (
     <section className={`skills ${inView ? "skills--visible" : ""}`} id="skills" ref={sectionRef}>
@@ -113,7 +126,7 @@ export default function Skills() {
             <button
               key={tab.id}
               className={`skills__tab ${activeTab === tab.id ? "skills__tab--active" : ""}`}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => handleTabChange(tab.id)}
             >
               <TabIcon type={tab.icon} />
               {tab.label}
@@ -122,7 +135,7 @@ export default function Skills() {
         </div>
 
         {/* Skills Grid */}
-        <div className="skills__grid" >
+        <div className="skills__grid" key={key}>
           {skills.map((skill, index) => {
             const IconComponent = SKILL_ICONS[skill.icon];
             return (

@@ -83,7 +83,7 @@ export default function Certifications() {
           setInView(true);
         }
       },
-      { threshold: 0.4 }
+      { threshold: 0.1 }
     );
     if (sectionRef.current) {
       observer.observe(sectionRef.current);

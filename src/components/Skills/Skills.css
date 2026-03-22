@@ -105,7 +105,7 @@
   border-radius: 8px;
   border: none;
   background: transparent;
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   font-family: 'DM Sans', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
@@ -184,7 +184,7 @@
   animation-delay: calc(var(--skill-index) * 0.1s); */
 }
 
-.skills--visible .skill-card {
+.skill-card--visible {
   opacity: 1;
   transform: translateY(0);
   transition-delay: calc(var(--skill-index) * 0.1s);
@@ -377,14 +377,21 @@
     margin-bottom: 2.5rem;
   }
 
+    .skills__title-underline {
+    width: 260px;
+  }
+
   .skills__tabs {
     gap: 0.5rem;
     padding: 0.4rem;
+    flex-direction: column;
   }
 
   .skills__tab {
     padding: 0.65rem 1.25rem;
     font-size: 0.875rem;
+    width: 100%;
+    justify-content: center;
   }
 
   .skills__tab svg {
