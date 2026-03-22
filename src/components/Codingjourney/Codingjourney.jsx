@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import "./CodingJourney.css";
+import "./Codingjourney.css";
 import { FiExternalLink } from "react-icons/fi";
 import { SiGithub, SiLeetcode, SiHackerrank } from "react-icons/si";
 
